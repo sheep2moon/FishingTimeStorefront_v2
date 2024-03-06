@@ -1,5 +1,4 @@
-import { ProductPreviewType } from "../../types/global";
-import { SortOptions } from "../medusa";
+import { ProductPreviewType, SortOptions } from "../../types/global";
 
 const stripCurrency = (price: string) => {
     return parseFloat(price.replace(/[^0-9.]/g, ""));

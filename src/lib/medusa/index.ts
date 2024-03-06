@@ -433,7 +433,7 @@ export const getProductByHandle = cache(async function (handle: string): Promise
 //     };
 // });
 
-export type SortOptions = "price_asc" | "price_desc" | "created_at";
+//
 
 // export const getProductsListWithSort = cache(async function getProductsListWithSort({
 //     page = 0,
@@ -545,37 +545,23 @@ export const getCollectionByHandle = cache(async function (handle: string): Prom
 });
 
 // Category actions
-export const listCategories = cache(async function () {
-    const headers = {
-        next: {
-            tags: ["collections"]
-        }
-    } as Record<string, any>;
 
-    return medusaClient.productCategories
-        .list({ expand: "category_children" }, headers)
-        .then(({ product_categories }) => product_categories)
-        .catch(err => {
-            throw err;
-        });
-});
+// export const getCategoriesList = cache(async function (
+//     offset: number = 0,
+//     limit: number = 100
+// ): Promise<{
+//     product_categories: ProductCategoryWithChildren[];
+//     count: number;
+// }> {
+//     const { product_categories, count } = await medusaClient.productCategories.list({ limit, offset }, { next: { tags: ["categories"] } }).catch(err => {
+//         throw err;
+//     });
 
-export const getCategoriesList = cache(async function (
-    offset: number = 0,
-    limit: number = 100
-): Promise<{
-    product_categories: ProductCategoryWithChildren[];
-    count: number;
-}> {
-    const { product_categories, count } = await medusaClient.productCategories.list({ limit, offset }, { next: { tags: ["categories"] } }).catch(err => {
-        throw err;
-    });
-
-    return {
-        product_categories,
-        count
-    };
-});
+//     return {
+//         product_categories,
+//         count
+//     };
+// });
 
 export const getCategoryByHandle = cache(async function (categoryHandle: string[]): Promise<{
     product_categories: ProductCategoryWithChildren[];

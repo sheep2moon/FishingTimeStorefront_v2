@@ -19,3 +19,5 @@ export type ProductCategoryWithChildren = Omit<ProductCategory, "category_childr
     category_children: ProductCategory[];
     category_parent?: ProductCategory;
 };
+
+export type SortOptions = "price_asc" | "price_desc" | "created_at";
