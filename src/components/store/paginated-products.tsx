@@ -1,5 +1,6 @@
 import { getProductsList } from "../../lib/medusa/products";
 import { SortOptions } from "../../types/global";
+import ProductPreview from "../product/product-preview";
 
 type Props = {
     pageNumber: number;
@@ -20,16 +21,10 @@ export default async function PaginatedProducts(props: Props) {
     });
 
     return (
-        <div>
-            <div>znaleziono: {count}</div>
-            <div className="gap-4 grid grid-cols-3">
-                {products.map(product => (
-                    <div className="flex flex-col gap-2 p-2" key={product.id}>
-                        <span>{product.title}</span>
-                        <span>{product.price?.calculated_price}</span>
-                    </div>
-                ))}
-            </div>
+        <div className="gap-4 grid grid-cols-3 mt-6">
+            {products.map(product => (
+                <ProductPreview product={product} key={product.id} />
+            ))}
         </div>
     );
 }

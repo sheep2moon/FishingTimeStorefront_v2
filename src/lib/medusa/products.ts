@@ -23,6 +23,7 @@ export const getProductsList = cache(async function ({ pageParam = 0, queryParam
             nextPage: null
         };
     }
+    console.log(limit);
 
     const { products, count } = await medusaClient.products
         .list(
@@ -38,6 +39,7 @@ export const getProductsList = cache(async function ({ pageParam = 0, queryParam
         .catch(err => {
             throw err;
         });
+    console.log(products, count);
 
     const transformedProducts = products.map(product => {
         return transformProductPreview(product, region);

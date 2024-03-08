@@ -11,7 +11,11 @@ const selectItems: { title: string; value: SortOptions }[] = [
     { title: "Cena malejąco", value: "-variants.prices.amount" }
 ] as const;
 
-export default function SortBy() {
+type Props = {
+    currentOrder?: SortOptions;
+};
+
+export default function SortBy(props: Props) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -21,9 +25,11 @@ export default function SortBy() {
         router.push(`${pathname}?${query}`);
     };
 
+    console.log(props.currentOrder);
+
     return (
-        <div className="max-w-xs ml-auto">
-            <Select defaultValue={selectItems[0].value} onValueChange={value => handleChange(value as SortOptions)}>
+        <div className="sm:max-w-52 max-w-40 ml-auto w-full">
+            <Select defaultValue={props.currentOrder || selectItems[0].value} onValueChange={value => handleChange(value as SortOptions)}>
                 <SelectTrigger>
                     <SelectValue placeholder="Sortuj.." />
                 </SelectTrigger>
