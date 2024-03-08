@@ -7,7 +7,7 @@ import { TfiMenu } from "react-icons/tfi";
 
 export default async function Nav() {
     return (
-        <div className="sticky z-50 top-0 inset-x-0 border-b-slate-300 border-b-2">
+        <div className="sticky z-50 top-0 inset-x-0 border-b-slate-300 border-b-2 bg-white">
             <header className="flex flex-col w-screen max-w-screen-xl mx-auto items-center pt-4">
                 <div className="grid grid-cols-3">
                     <div>

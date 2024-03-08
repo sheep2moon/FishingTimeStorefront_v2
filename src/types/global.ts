@@ -1,4 +1,4 @@
-import { ProductCategory } from "@medusajs/medusa";
+import { ProductCategory, ProductVariant } from "@medusajs/medusa";
 
 export type ProductPreviewType = {
     id: string;
@@ -20,4 +20,10 @@ export type ProductCategoryWithChildren = Omit<ProductCategory, "category_childr
     category_parent?: ProductCategory;
 };
 
-export type SortOptions = "price_asc" | "price_desc" | "created_at";
+export type SortOptions = "variants.prices.amount" | "-variants.prices.amount" | "created_at" | "-created_at";
+
+export type CalculatedVariant = ProductVariant & {
+    calculated_price: number;
+    calculated_price_type: "sale" | "default";
+    original_price: number;
+};

@@ -4,7 +4,7 @@ export default function PageLayout(props: { children: React.ReactNode }) {
     return (
         <>
             <Nav />
-            {props.children}
+            <main className="w-screen max-w-screen-xl mx-auto">{props.children}</main>
         </>
     );
 }
