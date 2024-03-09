@@ -4,6 +4,7 @@ import { ProductPreviewType, SortOptions } from "../../types/global";
 import { getRegion } from "./region";
 import { medusaClient } from "./config";
 import transformProductPreview from "../utils/transform-products";
+import { getMedusaHeaders } from ".";
 
 type ProductsListArgs = { pageParam?: number; queryParams?: StoreGetProductsParams; countryCode: string };
 
@@ -23,8 +24,6 @@ export const getProductsList = cache(async function ({ pageParam = 0, queryParam
             nextPage: null
         };
     }
-    console.log(limit);
-
     const { products, count } = await medusaClient.products
         .list(
             {
@@ -53,4 +52,16 @@ export const getProductsList = cache(async function ({ pageParam = 0, queryParam
         nextPage,
         queryParams
     };
+});
+
+export const getProductByHandle = cache(async function (handle: string) {
+    const headers = getMedusaHeaders(["products"]);
+
+    const product = await medusaClient.products
+        .list({ handle }, headers)
+        .then(({ products }) => products[0])
+        .catch(err => {
+            throw err;
+        });
+    return { product };
 });

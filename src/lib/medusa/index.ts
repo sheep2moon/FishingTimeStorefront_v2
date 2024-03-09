@@ -1,5 +1,3 @@
-"use server";
-
 import {
     ProductCategory,
     ProductCollection,
@@ -35,7 +33,7 @@ const emptyResponse = {
  * @param tags
  * @returns custom headers for Medusa API requests
  */
-const getMedusaHeaders = (tags: string[] = []) => {
+export const getMedusaHeaders = (tags: string[] = []) => {
     const headers = {
         next: {
             tags
