@@ -54,14 +54,23 @@ export const getProductsList = cache(async function ({ pageParam = 0, queryParam
     };
 });
 
-export const getProductByHandle = cache(async function (handle: string) {
+export const getProductByHandle = cache(async function (handle: string, region_id: string) {
     const headers = getMedusaHeaders(["products"]);
 
-    const product = await medusaClient.products
+    const { id } = await medusaClient.products
         .list({ handle }, headers)
         .then(({ products }) => products[0])
         .catch(err => {
             throw err;
         });
-    return { product };
+    if (!id) return null;
+    const product = medusaClient.products
+        .retrieve(`${id}?region_id=${region_id}`, headers)
+        .then(({ product }) => product)
+        .catch(err => {
+            console.log(err);
+            return null;
+        });
+
+    return product;
 });

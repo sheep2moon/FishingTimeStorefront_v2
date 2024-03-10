@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getCategoriesList } from "../../../lib/medusa/categories";
+import { getCategoriesList } from "@/lib/medusa/categories";
 
 export const metadata: Metadata = {
     title: "Kategorie",

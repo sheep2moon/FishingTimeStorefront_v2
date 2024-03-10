@@ -7,11 +7,12 @@ type Props = {
     order?: SortOptions;
     categoryId?: string[];
     searchQuery?: string;
+    countryCode: string;
 };
 
 export default async function PaginatedProducts(props: Props) {
     const { products, count } = await getProductsList({
-        countryCode: "pl",
+        countryCode: props.countryCode,
         pageParam: props.pageNumber,
         queryParams: {
             order: props.order,
